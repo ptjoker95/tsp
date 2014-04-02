@@ -6,6 +6,14 @@ from collections import namedtuple
 
 Point = namedtuple("Point", ['x', 'y'])
 
+# calculate the length of the tour
+def CalculateObj(points, solution, nodeCount):
+    obj = length(points[solution[-1]], points[solution[0]])
+    for index in range(0, nodeCount-1):
+        obj += length(points[solution[index]], points[solution[index+1]])
+
+    return obj
+
 #어떤 노드에서 가장 가까이에 있는 노드를 리턴해준다.
 def NodeofNearest(points, SwappingPoint, nodeCount):
     eachlength = [0]*nodeCount
@@ -24,7 +32,9 @@ def NodeofNearest(points, SwappingPoint, nodeCount):
         
     return eachlength.index(minvalue)
 
+
 # 가장 현재식에서 가장 거리가 긴 루트를 찾아, 그 인덱스를 리턴한다.
+
 def IndexofMaxLengthRoute( LengthofEachRoute ):
     return LengthofEachRoute.index(max(LengthofEachRoute))
 
